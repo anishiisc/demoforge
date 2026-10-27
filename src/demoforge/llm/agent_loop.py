@@ -344,11 +344,17 @@ async def _compact(
 
     audit.compaction(agent=agent, dropped_turns=dropped_turns, summary_tokens=summary_tokens)
 
-    summary_msg = {
-        "role": "user",
-        "content": f"[Context compacted — {dropped_turns} turns omitted. Summary: {summary_text}]",
-    }
-    compacted = first + [summary_msg]
+    # Merge the original first user message with the summary into ONE user message so
+    # we never emit two consecutive user messages (which the API rejects).
+    first_content = first[0].get("content", "") if first else ""
+    combined_content = (
+        f"{first_content}\n\n[Context compacted — {dropped_turns} turns omitted. Summary: {summary_text}]"
+        if first_content
+        else f"[Context compacted — {dropped_turns} turns omitted. Summary: {summary_text}]"
+    )
+    merged_first = {"role": "user", "content": combined_content}
+
+    compacted = [merged_first]
     for pair in keep_pairs:
         compacted.extend(pair)
     return compacted
