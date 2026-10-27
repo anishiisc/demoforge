@@ -1,0 +1,104 @@
+{
+  "id": "msg_planner_01",
+  "type": "message",
+  "role": "assistant",
+  "content": [
+    {
+      "type": "tool_use",
+      "id": "toolu_plan_01",
+      "name": "submit_plan",
+      "input": {
+        "plan": {
+          "title": "Invoice Reconciliation Demo",
+          "domain": "Finance / Accounts Payable",
+          "persona": "AP Manager",
+          "workflow_steps": [
+            "Upload batch of invoices and purchase orders",
+            "Intake agent parses and normalises documents",
+            "Matching agent compares invoice line items against POs",
+            "Exception agent flags mismatches above 2% or missing POs",
+            "Summary agent drafts an email to the AP manager",
+            "User reviews exceptions, approves or rejects, and downloads report"
+          ],
+          "demo_agents": [
+            {
+              "name": "intake_agent",
+              "role": "Parse and normalise uploaded invoices and POs",
+              "inputs": ["uploaded_invoices", "uploaded_pos"],
+              "outputs": ["parsed_invoices", "parsed_pos"]
+            },
+            {
+              "name": "matching_agent",
+              "role": "Compare invoice line items against POs by item code, quantity and price",
+              "inputs": ["parsed_invoices", "parsed_pos"],
+              "outputs": ["match_results"]
+            },
+            {
+              "name": "exception_agent",
+              "role": "Flag mismatches above 2% variance or missing POs",
+              "inputs": ["match_results"],
+              "outputs": ["exceptions"]
+            },
+            {
+              "name": "summary_agent",
+              "role": "Draft reconciliation summary email to AP manager",
+              "inputs": ["match_results", "exceptions"],
+              "outputs": ["summary_email"]
+            }
+          ],
+          "demo_tools": [
+            {"name": "parse_document", "purpose": "Extract structured data from invoice or PO"},
+            {"name": "compare_line_items", "purpose": "Diff two lists of line items"},
+            {"name": "flag_exception", "purpose": "Create an exception record"},
+            {"name": "draft_email", "purpose": "Generate summary email text"},
+            {"name": "generate_report", "purpose": "Produce downloadable reconciliation report CSV"}
+          ],
+          "data_entities": [
+            {
+              "name": "Invoice",
+              "fields": ["invoice_id", "vendor_id", "date", "line_items", "total_amount"],
+              "approx_rows": 20
+            },
+            {
+              "name": "PurchaseOrder",
+              "fields": ["po_id", "vendor_id", "date", "line_items", "approved_amount"],
+              "approx_rows": 18
+            },
+            {
+              "name": "LineItem",
+              "fields": ["item_code", "description", "quantity", "unit_price", "total"],
+              "approx_rows": 100
+            },
+            {
+              "name": "Exception",
+              "fields": ["exception_id", "invoice_id", "po_id", "item_code", "variance_pct", "reason"],
+              "approx_rows": 8
+            }
+          ],
+          "success_criteria": [
+            "All 20 invoices are parsed and matched against POs",
+            "Exceptions above 2% variance are flagged automatically",
+            "Missing PO cases are identified and listed",
+            "Summary email draft is generated",
+            "User can approve or reject each exception",
+            "Reconciliation report CSV is downloadable",
+            "Audit log records every agent action and tool call",
+            "pytest passes with no failures"
+          ],
+          "assumptions": [
+            "Documents are pre-converted to structured JSON for the demo (no OCR)",
+            "Vendor IDs are consistent between invoices and POs",
+            "Currency is USD throughout"
+          ],
+          "html_sim": {
+            "feasible": true,
+            "reason": "The workflow is deterministic and sequential, fitting a single-page step-through simulation"
+          },
+          "gui_framework": "streamlit"
+        }
+      }
+    }
+  ],
+  "stop_reason": "tool_use",
+  "usage": {"input_tokens": 500, "output_tokens": 800}
+}

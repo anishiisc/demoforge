@@ -1,0 +1,98 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "DemoForge Plan",
+  "description": "Structured output of the Planner agent (Stage 0)",
+  "type": "object",
+  "required": [
+    "title",
+    "domain",
+    "persona",
+    "workflow_steps",
+    "demo_agents",
+    "demo_tools",
+    "data_entities",
+    "success_criteria",
+    "assumptions",
+    "html_sim"
+  ],
+  "properties": {
+    "title": {
+      "type": "string",
+      "description": "Short human-readable title for this demo"
+    },
+    "domain": {
+      "type": "string",
+      "description": "Industry or functional domain (e.g. 'Finance / Accounts Payable')"
+    },
+    "persona": {
+      "type": "string",
+      "description": "Primary user persona for the demo"
+    },
+    "workflow_steps": {
+      "type": "array",
+      "items": {"type": "string"},
+      "minItems": 1,
+      "description": "Ordered list of high-level workflow steps"
+    },
+    "demo_agents": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["name", "role", "inputs", "outputs"],
+        "properties": {
+          "name": {"type": "string"},
+          "role": {"type": "string"},
+          "inputs": {"type": "array", "items": {"type": "string"}},
+          "outputs": {"type": "array", "items": {"type": "string"}}
+        }
+      },
+      "minItems": 1
+    },
+    "demo_tools": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["name", "purpose"],
+        "properties": {
+          "name": {"type": "string"},
+          "purpose": {"type": "string"}
+        }
+      }
+    },
+    "data_entities": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["name", "fields", "approx_rows"],
+        "properties": {
+          "name": {"type": "string"},
+          "fields": {"type": "array", "items": {"type": "string"}},
+          "approx_rows": {"type": "integer", "minimum": 1}
+        }
+      }
+    },
+    "success_criteria": {
+      "type": "array",
+      "items": {"type": "string"},
+      "minItems": 1
+    },
+    "assumptions": {
+      "type": "array",
+      "items": {"type": "string"}
+    },
+    "html_sim": {
+      "type": "object",
+      "required": ["feasible", "reason"],
+      "properties": {
+        "feasible": {"type": "boolean"},
+        "reason": {"type": "string"}
+      }
+    },
+    "gui_framework": {
+      "type": "string",
+      "default": "streamlit",
+      "description": "GUI framework for the generated demo (default: streamlit)"
+    }
+  },
+  "additionalProperties": false
+}

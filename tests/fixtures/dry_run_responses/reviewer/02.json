@@ -1,0 +1,17 @@
+{
+  "id": "msg_reviewer_finish",
+  "type": "message",
+  "role": "assistant",
+  "content": [
+    {
+      "type": "tool_use",
+      "id": "toolu_reviewer_finish",
+      "name": "finish_stage",
+      "input": {
+        "summary": "Reviewer stage complete. All pass. review_report.md written. No issues found. No fixes required."
+      }
+    }
+  ],
+  "stop_reason": "tool_use",
+  "usage": {"input_tokens": 100, "output_tokens": 60}
+}

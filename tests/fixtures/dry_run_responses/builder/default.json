@@ -1,0 +1,26 @@
+{
+  "id": "msg_builder_default",
+  "type": "message",
+  "role": "assistant",
+  "content": [
+    {
+      "type": "tool_use",
+      "id": "toolu_builder_write",
+      "name": "write_file",
+      "input": {
+        "path": "data/placeholder.py",
+        "content": "# placeholder file written by builder dry-run\n"
+      }
+    },
+    {
+      "type": "tool_use",
+      "id": "toolu_builder_finish",
+      "name": "finish_stage",
+      "input": {
+        "summary": "Builder group complete. File(s) written successfully."
+      }
+    }
+  ],
+  "stop_reason": "tool_use",
+  "usage": {"input_tokens": 300, "output_tokens": 200}
+}

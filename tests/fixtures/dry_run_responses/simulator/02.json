@@ -1,0 +1,17 @@
+{
+  "id": "msg_sim_finish",
+  "type": "message",
+  "role": "assistant",
+  "content": [
+    {
+      "type": "tool_use",
+      "id": "toolu_sim_finish",
+      "name": "finish_stage",
+      "input": {
+        "summary": "Simulator stage complete. demo_simulation.html written: self-contained, inline CSS and JS, 12 workflow steps, play/pause/step/reset controls, live audit log panel."
+      }
+    }
+  ],
+  "stop_reason": "tool_use",
+  "usage": {"input_tokens": 100, "output_tokens": 60}
+}

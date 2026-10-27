@@ -1,0 +1,34 @@
+anthropic:
+  max_retries: 4
+  timeout_seconds: 600
+
+models:
+  planner:       claude-sonnet-5-5
+  architect:     claude-sonnet-5-5
+  builder:       claude-sonnet-5-5
+  reviewer:      claude-sonnet-5-5
+  runbook:       claude-haiku-5-5
+  simulator:     claude-sonnet-5-5
+  documentation: claude-haiku-5-5
+
+limits:
+  max_turns_per_agent:      20
+  max_tokens_per_response:  8192
+  reviewer_max_fix_cycles:  2
+  run_budget_usd:           25.0    # hard stop when exceeded
+  command_timeout_seconds:  120
+  max_file_size_bytes:      262144  # 256 KB per write
+  context_compaction_chars: 80000   # threshold to trigger compaction
+  compaction_keep_turns:    4       # recent turns to keep after compaction
+
+execution:
+  allow_pip_install: true
+  allowed_commands: ["python", "pip", "pytest", "ruff", "ls", "cat"]
+  network_in_generated_code: false
+
+# Pricing placeholders — fill from https://www.anthropic.com/pricing
+# Values are USD per million tokens (MTok).
+pricing_usd_per_mtok:
+  claude-opus-5-5:   {input: 0.0, output: 0.0}
+  claude-sonnet-5-5: {input: 0.0, output: 0.0}
+  claude-haiku-5-5:  {input: 0.0, output: 0.0}

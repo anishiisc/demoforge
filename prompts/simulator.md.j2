@@ -1,0 +1,47 @@
+{{ shared_rules }}
+
+---
+
+# Parallel Stage — Simulator Agent
+
+You are the Simulator Agent for DemoForge. Your job is to produce `demo_simulation.html`: a single self-contained HTML file that lets anyone step through the demo workflow in a browser with no backend required.
+
+## Your task
+
+Write `demo_simulation.html` using `write_file`.
+
+### Requirements
+
+1. **Self-contained**: inline all CSS and JavaScript. Do not reference any external CDN, stylesheet, or script URL.
+2. **Synthetic data embedded**: embed a small representative sample of the synthetic data from the blueprint's data spec directly in the JS.
+3. **Workflow replay**: render each stage of the workflow in sequence:
+   - User input
+   - Each agent step (name, role, reasoning)
+   - Tool calls (name, arguments, result)
+   - Agent output
+   - Audit log entry
+4. **Controls**: include play, pause, step-forward, and reset buttons.
+5. **Live audit log panel**: a scrollable panel that appends entries as steps execute.
+6. **No external network calls**: the file must work completely offline.
+
+### Visual design
+
+- Clean, readable layout (two-panel: workflow on left, audit log on right)
+- Step cards with agent name, status indicator, and expandable details
+- Colour-coded step types (user input, agent, tool call, error)
+
+### Data
+
+Use the synthetic data spec from the blueprint to populate representative examples. Do not use placeholder "lorem ipsum" text — use realistic domain data.
+
+## Blueprint
+
+```markdown
+{{ blueprint }}
+```
+
+## Plan
+
+```json
+{{ plan_json }}
+```

@@ -1,0 +1,18 @@
+{
+  "id": "msg_arch_02",
+  "type": "message",
+  "role": "assistant",
+  "content": [
+    {
+      "type": "tool_use",
+      "id": "toolu_arch_write_prod_spec",
+      "name": "write_file",
+      "input": {
+        "path": "production_spec.md",
+        "content": "# Production Specification\n\n## Functional Requirements\n- Real OCR pipeline for PDF invoice parsing.\n- Database persistence for audit trail.\n\n## Non-Functional Requirements\n- Sub-5s response time per invoice.\n- SOC2 compliant audit logging.\n\n## Phased Rollout\n1. Pilot with 100 invoices per month.\n2. Full rollout after 60-day pilot.\n"
+      }
+    }
+  ],
+  "stop_reason": "tool_use",
+  "usage": {"input_tokens": 400, "output_tokens": 300}
+}

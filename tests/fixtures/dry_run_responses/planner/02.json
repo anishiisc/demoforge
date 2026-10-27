@@ -1,0 +1,17 @@
+{
+  "id": "msg_planner_02",
+  "type": "message",
+  "role": "assistant",
+  "content": [
+    {
+      "type": "tool_use",
+      "id": "toolu_finish_planner",
+      "name": "finish_stage",
+      "input": {
+        "summary": "Planner stage complete. Produced plan.json with 4 demo agents, 5 tools, 4 data entities, 8 success criteria. HTML simulation is feasible. GUI framework: streamlit."
+      }
+    }
+  ],
+  "stop_reason": "tool_use",
+  "usage": {"input_tokens": 200, "output_tokens": 80}
+}

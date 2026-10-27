@@ -1,0 +1,17 @@
+{
+  "id": "msg_runbook_finish",
+  "type": "message",
+  "role": "assistant",
+  "content": [
+    {
+      "type": "tool_use",
+      "id": "toolu_runbook_finish",
+      "name": "finish_stage",
+      "input": {
+        "summary": "Runbook stage complete. RUN.md written with prerequisites, setup, data generation, launch command, demo script, audit log guide, and troubleshooting table."
+      }
+    }
+  ],
+  "stop_reason": "tool_use",
+  "usage": {"input_tokens": 100, "output_tokens": 60}
+}

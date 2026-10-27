@@ -1,0 +1,98 @@
+{
+  "id": "msg_arch_03",
+  "type": "message",
+  "role": "assistant",
+  "content": [
+    {
+      "type": "tool_use",
+      "id": "toolu_arch_submit_manifest",
+      "name": "submit_manifest",
+      "input": {
+        "manifest": {
+          "files": [
+            {
+              "path": "data/generate_synthetic_data.py",
+              "purpose": "Generates synthetic invoice and PO JSON files",
+              "depends_on": [],
+              "blueprint_section": "Synthetic Data Spec"
+            },
+            {
+              "path": "mock_llm_instructions.json",
+              "purpose": "Canned LLM responses keyed by agent_name.step_id",
+              "depends_on": ["data/generate_synthetic_data.py"],
+              "blueprint_section": "Mocked LLM Layer"
+            },
+            {
+              "path": "audit/logger.py",
+              "purpose": "Demo-side audit logger writing logs/audit.jsonl",
+              "depends_on": [],
+              "blueprint_section": "Audit Logging Spec"
+            },
+            {
+              "path": "tools/document_tools.py",
+              "purpose": "parse_document and generate_report tool implementations",
+              "depends_on": ["audit/logger.py"],
+              "blueprint_section": "Agent and Tool Architecture"
+            },
+            {
+              "path": "tools/matching_tools.py",
+              "purpose": "compare_line_items tool implementation",
+              "depends_on": ["audit/logger.py"],
+              "blueprint_section": "Agent and Tool Architecture"
+            },
+            {
+              "path": "agents/intake_agent.py",
+              "purpose": "Intake agent: parse uploaded invoices and POs",
+              "depends_on": ["tools/document_tools.py", "mock_llm_instructions.json"],
+              "blueprint_section": "Agent and Tool Architecture"
+            },
+            {
+              "path": "agents/matching_agent.py",
+              "purpose": "Matching agent: compare line items",
+              "depends_on": ["tools/matching_tools.py", "mock_llm_instructions.json"],
+              "blueprint_section": "Agent and Tool Architecture"
+            },
+            {
+              "path": "agents/exception_agent.py",
+              "purpose": "Exception agent: flag mismatches",
+              "depends_on": ["agents/matching_agent.py"],
+              "blueprint_section": "Agent and Tool Architecture"
+            },
+            {
+              "path": "agents/summary_agent.py",
+              "purpose": "Summary agent: draft reconciliation email",
+              "depends_on": ["agents/exception_agent.py"],
+              "blueprint_section": "Agent and Tool Architecture"
+            },
+            {
+              "path": "agents/orchestrator.py",
+              "purpose": "Demo orchestrator that sequences the four agents",
+              "depends_on": ["agents/intake_agent.py", "agents/matching_agent.py", "agents/exception_agent.py", "agents/summary_agent.py"],
+              "blueprint_section": "Agent and Tool Architecture"
+            },
+            {
+              "path": "gui/app.py",
+              "purpose": "Streamlit GUI for the demo",
+              "depends_on": ["agents/orchestrator.py"],
+              "blueprint_section": "Mock GUI Spec"
+            },
+            {
+              "path": "requirements.txt",
+              "purpose": "Python dependencies for the demo",
+              "depends_on": [],
+              "blueprint_section": "Folder Structure"
+            },
+            {
+              "path": "tests/test_smoke.py",
+              "purpose": "Smoke test covering one end-to-end path",
+              "depends_on": ["agents/orchestrator.py"],
+              "blueprint_section": "Acceptance Checklist"
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "stop_reason": "tool_use",
+  "usage": {"input_tokens": 400, "output_tokens": 600}
+}

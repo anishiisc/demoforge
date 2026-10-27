@@ -1,0 +1,18 @@
+{
+  "id": "msg_doc_default",
+  "type": "message",
+  "role": "assistant",
+  "content": [
+    {
+      "type": "tool_use",
+      "id": "toolu_doc_tech_note",
+      "name": "write_file",
+      "input": {
+        "path": "tech_note.md",
+        "content": "# Technical Note: Invoice Reconciliation Demo\n\n## 1. Purpose\nThis demo illustrates an agentic invoice reconciliation workflow for a mid-size FMCG distributor.\n\n## 2. Architecture\nFour agents (intake, matching, exception, summary) process a batch of invoices and POs sequentially.\n\n## 3. Artefacts\n- plan.json: structured plan from the Planner agent.\n- demo_blueprint.md: primary contract for the demo build.\n- production_spec.md: real-deployment specification.\n- manifest.json: ordered file list for the Builder.\n- review_report.md: static and dynamic review findings.\n- RUN.md: setup and demo instructions.\n- demo_simulation.html: self-contained browser simulation.\n\n## 4. Mock-to-Production Mapping\nThe mock layer reads responses from mock_llm_instructions.json. In production, these calls go to a real LLM via the Anthropic API.\n\n## 5. Limitations\n- No real OCR pipeline.\n- Synthetic data only.\n\n## 6. Next Steps\n1. Replace mock LLM layer with real API calls.\n2. Add PDF parsing pipeline.\n3. Integrate with ERP system.\n\n## 7. References\n1. Anthropic. Tool use with Claude. https://docs.anthropic.com\n"
+      }
+    }
+  ],
+  "stop_reason": "tool_use",
+  "usage": {"input_tokens": 300, "output_tokens": 400}
+}

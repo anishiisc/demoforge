@@ -1,0 +1,18 @@
+{
+  "id": "msg_reviewer_default",
+  "type": "message",
+  "role": "assistant",
+  "content": [
+    {
+      "type": "tool_use",
+      "id": "toolu_reviewer_write_report",
+      "name": "write_file",
+      "input": {
+        "path": "review_report.md",
+        "content": "# Review Report\n\n## Checklist\n\n| # | Item | Status | Evidence |\n|---|------|--------|----------|\n| 1 | pytest passes | PASS | dry-run mode |\n| 2 | All manifest files exist | PASS | files verified |\n| 3 | No real LLM imports | PASS | static scan |\n| 4 | audit.jsonl written | PASS | demo audit module present |\n| 5 | GUI imports cleanly | PASS | headless check |\n\n## Issues Found\nNone in dry-run mode.\n\n## Fixes Applied\nNone required.\n"
+      }
+    }
+  ],
+  "stop_reason": "tool_use",
+  "usage": {"input_tokens": 300, "output_tokens": 400}
+}

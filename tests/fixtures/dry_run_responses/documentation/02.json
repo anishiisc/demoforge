@@ -1,0 +1,18 @@
+{
+  "id": "msg_doc_manifest",
+  "type": "message",
+  "role": "assistant",
+  "content": [
+    {
+      "type": "tool_use",
+      "id": "toolu_doc_manifest",
+      "name": "write_file",
+      "input": {
+        "path": "MANIFEST.md",
+        "content": "# Artefact Manifest\n\n| Path | Description |\n|------|-------------|\n| plan.json | Structured plan from the Planner agent |\n| demo_blueprint.md | Primary architecture and spec contract |\n| production_spec.md | Real-deployment technical specification |\n| manifest.json | Ordered file list for the Builder agent |\n| review_report.md | Static and dynamic review report |\n| RUN.md | Setup and demo walkthrough instructions |\n| demo_simulation.html | Self-contained browser workflow simulation |\n| tech_note.md | Technical documentation note |\n| MANIFEST.md | This file |\n| demo/ | Generated demo project directory |\n"
+      }
+    }
+  ],
+  "stop_reason": "tool_use",
+  "usage": {"input_tokens": 200, "output_tokens": 200}
+}

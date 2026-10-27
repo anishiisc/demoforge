@@ -1,0 +1,17 @@
+{
+  "id": "msg_arch_04",
+  "type": "message",
+  "role": "assistant",
+  "content": [
+    {
+      "type": "tool_use",
+      "id": "toolu_finish_arch",
+      "name": "finish_stage",
+      "input": {
+        "summary": "Architect stage complete. Produced demo_blueprint.md, production_spec.md, and manifest.json with 13 files."
+      }
+    }
+  ],
+  "stop_reason": "tool_use",
+  "usage": {"input_tokens": 200, "output_tokens": 60}
+}

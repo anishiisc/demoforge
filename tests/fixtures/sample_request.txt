@@ -1,0 +1,7 @@
+Build a demo of an agentic invoice reconciliation assistant for a mid-size
+FMCG distributor. An intake agent reads uploaded invoices and purchase orders,
+a matching agent compares line items, quantities and prices, an exception agent
+flags mismatches above 2 percent or missing POs, and a summary agent drafts an
+email to the AP manager. The user should be able to upload a batch, see each
+agent's reasoning, approve or reject exceptions, and download a reconciliation
+report.

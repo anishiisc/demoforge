@@ -1,0 +1,40 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "DemoForge Manifest",
+  "description": "Ordered list of files the Builder must create (output of Stage 1)",
+  "type": "object",
+  "required": ["files"],
+  "properties": {
+    "files": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["path", "purpose"],
+        "properties": {
+          "path": {
+            "type": "string",
+            "description": "Relative path from the demo root"
+          },
+          "purpose": {
+            "type": "string",
+            "description": "One-sentence description of this file's role"
+          },
+          "depends_on": {
+            "type": "array",
+            "items": {"type": "string"},
+            "description": "Paths that must exist before this file is built",
+            "default": []
+          },
+          "blueprint_section": {
+            "type": "string",
+            "description": "Section of demo_blueprint.md that specifies this file",
+            "default": ""
+          }
+        },
+        "additionalProperties": false
+      },
+      "minItems": 1
+    }
+  },
+  "additionalProperties": false
+}

@@ -1,0 +1,17 @@
+{
+  "id": "msg_doc_finish",
+  "type": "message",
+  "role": "assistant",
+  "content": [
+    {
+      "type": "tool_use",
+      "id": "toolu_doc_finish",
+      "name": "finish_stage",
+      "input": {
+        "summary": "Documentation stage complete. tech_note.md and MANIFEST.md written."
+      }
+    }
+  ],
+  "stop_reason": "tool_use",
+  "usage": {"input_tokens": 100, "output_tokens": 50}
+}

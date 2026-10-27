@@ -1,0 +1,17 @@
+{
+  "id": "msg_builder_02",
+  "type": "message",
+  "role": "assistant",
+  "content": [
+    {
+      "type": "tool_use",
+      "id": "toolu_builder_finish",
+      "name": "finish_stage",
+      "input": {
+        "summary": "Builder group complete. File(s) written successfully."
+      }
+    }
+  ],
+  "stop_reason": "tool_use",
+  "usage": {"input_tokens": 100, "output_tokens": 50}
+}

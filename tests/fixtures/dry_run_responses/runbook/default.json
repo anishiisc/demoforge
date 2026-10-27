@@ -1,0 +1,18 @@
+{
+  "id": "msg_runbook_default",
+  "type": "message",
+  "role": "assistant",
+  "content": [
+    {
+      "type": "tool_use",
+      "id": "toolu_runbook_write",
+      "name": "write_file",
+      "input": {
+        "path": "RUN.md",
+        "content": "# RUN.md — Invoice Reconciliation Demo\n\n## Prerequisites\n- Python 3.11+\n- 500 MB disk space\n\n## Setup\n\n```bash\ncd demo\npython -m venv .venv\nsource .venv/bin/activate\npip install -r requirements.txt\n```\n\n## Generate Data\n\n```bash\npython data/generate_synthetic_data.py\n```\n\n## Launch\n\n```bash\nstreamlit run gui/app.py\n```\n\n## Demo Script\n\n1. Open the browser to http://localhost:8501\n2. Click 'Upload batch' and select the sample invoices from data/\n3. Click 'Process batch' to run all agents\n4. Review the exceptions table\n5. Approve or reject each exception\n6. Click 'Download Report'\n\n## Audit Logs\n\nLogs are written to `logs/audit.jsonl`. Each line is a JSON object with fields: ts, run_id, agent, event_type, step_id, input, output, latency_ms, mock_source_key.\n\n## Troubleshooting\n\n| Error | Fix |\n|-------|-----|\n| ModuleNotFoundError | Run pip install -r requirements.txt |\n| Port in use | Run streamlit run gui/app.py --server.port 8502 |\n"
+      }
+    }
+  ],
+  "stop_reason": "tool_use",
+  "usage": {"input_tokens": 300, "output_tokens": 400}
+}

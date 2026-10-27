@@ -1,0 +1,18 @@
+{
+  "id": "msg_arch_01",
+  "type": "message",
+  "role": "assistant",
+  "content": [
+    {
+      "type": "tool_use",
+      "id": "toolu_arch_write_blueprint",
+      "name": "write_file",
+      "input": {
+        "path": "demo_blueprint.md",
+        "content": "# Invoice Reconciliation Demo — Blueprint\n\n## 1. Use Case Summary\nThis demo illustrates an agentic invoice reconciliation assistant for a mid-size FMCG distributor.\n\n## 2. Assumptions\n- Documents are pre-converted to structured JSON.\n- Currency is USD.\n\n## 3. Agent and Tool Architecture\n| Agent | Role | Inputs | Outputs |\n|-------|------|--------|---------|\n| intake_agent | Parse documents | uploaded files | parsed JSON |\n| matching_agent | Compare line items | parsed JSON | match results |\n| exception_agent | Flag mismatches | match results | exceptions |\n| summary_agent | Draft email | match results + exceptions | summary email |\n\n## 4. Synthetic Data Spec\n- 20 invoices with 5 line items each.\n- 18 POs matching 18 invoices; 2 invoices have no PO.\n- 8 intentional mismatches above 2%.\n\n## 5. Mock GUI Spec\nStreamlit app with: file upload panel, batch processing button, exception review table, approve/reject buttons, report download.\n\n## 6. Mocked LLM Layer\nmock_llm_instructions.json keyed by agent_name.step_id with 2 variants each.\n\n## 7. Audit Logging Spec\nlogs/audit.jsonl fields: ts, run_id, agent, event_type, step_id, input, output, latency_ms, mock_source_key.\n\n## 8. Folder Structure\ndemo/\n  data/\n  agents/\n  tools/\n  audit/\n  gui/\n  logs/\n  tests/\n  mock_llm_instructions.json\n  requirements.txt\n\n## 9. Acceptance Checklist\n1. pytest passes with no failures.\n2. All manifest files exist.\n3. No anthropic/openai imports.\n4. audit.jsonl is written.\n5. GUI launches without error.\n"
+      }
+    }
+  ],
+  "stop_reason": "tool_use",
+  "usage": {"input_tokens": 600, "output_tokens": 900}
+}
